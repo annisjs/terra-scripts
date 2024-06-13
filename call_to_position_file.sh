@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Check if filename argument is provided
-if [ $# -ne 1 ]; then
-    echo "Usage: $0 <input_file>"
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <input_file> <output_file>"
     exit 1
 fi
 
