@@ -30,6 +30,8 @@ while IFS= read -r line; do
     # Execute grep with the current line as a parameter
     chr=$(echo "$line" | cut -d ':' -f 1)
     pos=$(echo "$line" | cut -d ':' -f 2)
+    snp=$(echo "$line" | cut -d ':' -f 3)
     # Use grep with extended regex to find the line that matches the search terms
-    awk -v first="$chr" -v fourth="$pos" '$1 == first && $4 == fourth' "$bim_file" >> $output_file
+    result=$(awk -v first="$chr" -v fourth="$pos" '$1 == first && $4 == fourth' "$bim_file")
+    echo "$snp    $result" >> $output_file
 done < "$position_file"
