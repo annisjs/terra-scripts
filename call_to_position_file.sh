@@ -22,5 +22,7 @@ fi
 while IFS= read -r line; do
     # Print each line (replace this with your desired command)
     result=$(./call_to_position.sh $line)
-    echo "$result:$line" >> "$output_file"
+    if [ -n "$result" ]; then
+        echo "$result:$line" >> "$output_file"
+    fi
 done < "$input_file"
