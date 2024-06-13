@@ -29,8 +29,8 @@ unzip -q $PLINK_ZIP -d $PLINK_DIR
 rm $PLINK_ZIP
 
 # Move the PLINK executable to /usr/local/bin for global access
-echo "Exporting PLINK directory to PATH..."
-export PATH=$(pwd)/$PLINK_DIR:$PATH
+echo "Copying plink to ~/.local/bin"
+cp $PLINK_DIR/plink $HOME/.local/bin
 
 # Verify installation
 if command -v plink &> /dev/null
