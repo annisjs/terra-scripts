@@ -28,7 +28,8 @@ fi
 # Read each line of the input file and use it as a parameter for grep
 while IFS= read -r line; do
     # Execute grep with the current line as a parameter
-    concatenated=$(echo "$bim_file" | awk '{print $1 ":" $4}')
+    chr=$(echo "$line" | cut -d ':' -f 1)
+    pos=$(echo "$line" | cut -d ':' -f 2)
     # Use grep with extended regex to find the line that matches the search terms
-    echo "$concatenated" | grep -F "$pattern" >> $output_file
+    awk -v first="$chr" -v fourth="$pos" '$1 == first && $4 == fourth' "$file_to_grep" >> $output_file
 done < "$position_file"
