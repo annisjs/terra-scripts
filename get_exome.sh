@@ -1,5 +1,5 @@
 #!/bin/bash
-EXOME="gs://working-set-redeposit/exomechip"
+EXOME="gs://working-set-redeposit/exomechip/*"
 echo "Creating directory $HOME/exomechip"
 mkdir $HOME/exomechip
 echo "Downloading Exome data to workspace"
