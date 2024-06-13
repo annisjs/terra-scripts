@@ -28,5 +28,13 @@ fi
 # Read each line of the input file and use it as a parameter for grep
 while IFS= read -r line; do
     # Execute grep with the current line as a parameter
-    grep "$line" "$bim_file" >> "$output_file"
+    # Use cut command to split the string at ":"
+    chr=$(echo "$line" | cut -d ':' -f 1)
+    pos=$(echo "$line" | cut -d ':' -f 2)
+
+    # Construct the regex pattern to match the line
+    regex_pattern="\b${chr}\s+.*\b${pos}\b"
+
+    # Use grep with extended regex to find the line that matches the search terms
+    echo "$line" | grep -E "$regex_pattern" "$bim_file" >> "$output_file"
 done < "$position_file"
