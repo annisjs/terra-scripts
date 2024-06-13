@@ -33,5 +33,7 @@ while IFS= read -r line; do
     snp=$(echo "$line" | cut -d ':' -f 3)
     # Use grep with extended regex to find the line that matches the search terms
     result=$(awk -v first="$chr" -v fourth="$pos" '$1 == first && $4 == fourth' "$bim_file")
-    echo "$snp    $result" >> $output_file
+    if [ -n "$result" ]; then
+        echo "$snp    $result" >> $output_file
+    fi
 done < "$position_file"
