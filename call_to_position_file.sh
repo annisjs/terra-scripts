@@ -18,5 +18,5 @@ fi
 # Read each line of the file and pass it as a parameter
 while IFS= read -r line; do
     # Print each line (replace this with your desired command)
-    ./call_to_position.sh $line >> "$output_file"
+    ./call_to_position.sh $line > "$output_file"
 done < "$input_file"
