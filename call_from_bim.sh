@@ -33,5 +33,6 @@ while IFS= read -r line; do
     echo $chr
     echo $pos
     # Use grep with extended regex to find the line that matches the search terms
+    echo awk -v first="$chr" -v fourth="$pos" '$1 == first && $4 == fourth' "$file_to_grep" >> $output_file
     awk -v first="$chr" -v fourth="$pos" '$1 == first && $4 == fourth' "$file_to_grep" >> $output_file
 done < "$position_file"
