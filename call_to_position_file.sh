@@ -15,8 +15,11 @@ if [ ! -f "$input_file" ]; then
     exit 1
 fi
 
+# Clear output file or create it if it doesn't exist
+> "$output_file"
+
 # Read each line of the file and pass it as a parameter
 while IFS= read -r line; do
     # Print each line (replace this with your desired command)
-    ./call_to_position.sh $line > "$output_file"
+    ./call_to_position.sh $line >> "$output_file"
 done < "$input_file"

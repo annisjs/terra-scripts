@@ -22,8 +22,11 @@ if [ ! -f "$bim_file" ]; then
     exit 1
 fi
 
+# Clear output file or create it if it doesn't exist
+> "$output_file"
+
 # Read each line of the input file and use it as a parameter for grep
 while IFS= read -r line; do
     # Execute grep with the current line as a parameter
-    grep "$line" "$bim_file" > "$output_file"
+    grep "$line" "$bim_file" >> "$output_file"
 done < "$position_file"
