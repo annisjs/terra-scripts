@@ -1,3 +1,7 @@
+if [ $# -ne 3 ]; then
+    echo "Usage: $0 <snp_file> <output_folder> <type (mega or exome)>"
+    exit 1
+fi
 SNP_FILE=$1
 OUTPUT=$2
 TYPE=$3
