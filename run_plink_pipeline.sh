@@ -11,10 +11,10 @@ SNP_FILE=$1
 OUTPUT=$2
 TYPE=$3
 POS=$4
-POS_FILE=/home/jupyter/snp_pos.txt
+POS_FILE=$SNP_FILE
 if [ "$POS" = "n" ]; then
     ./call_to_position_file.sh $SNP_FILE /home/jupyter/snp_pos.txt
-    POS_FILE=$SNP_FILE
+    POS_FILE=/home/jupyter/snp_pos.txt
 fi
 if [ "$TYPE" = "exome" ]; then
     BFILE=/home/jupyter/exomechip/exomechip_001/redeposit_plink_postqc/postQC_redeposit_exomechip_001_v1_202306
