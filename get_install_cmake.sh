@@ -5,7 +5,7 @@ cmake_download_page="https://github.com/Kitware/CMake/releases"
 
 # Get the latest CMake version download link for Linux x86_64
 echo "Fetching the latest CMake download link..."
-release=$(curl -s $cmake_download_page | grep -oP '/Kitware/CMake/releases/download/v[0-9]+\.[0-9]+\.[0-9]+/cmake-[0-9]+\.[0-9]+\.[0-9]+-linux-x86_64.tar.gz"' | head -1)
+release=$(curl -s $cmake_download_page | grep -oP "/Kitware/CMake/releases/download/v[0-9]+\.[0-9]+\.[0-9]+/cmake-[0-9]+\.[0-9]+\.[0-9]+-linux-x86_64.tar.gz" | head -1)
 download_url="https://github.com/$release"
 
 # Check if the download URL was found
