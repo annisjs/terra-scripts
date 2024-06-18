@@ -30,7 +30,7 @@ fi
 
 # Unpack the tarball
 echo "Unpacking the file to $target_dir..."
-tar -xvf "$output_file" -C "$target_dir"
+tar -xf "$output_file" -C "$target_dir"
 
 # Check if the unpacking was successful
 if [ $? -ne 0 ]; then
