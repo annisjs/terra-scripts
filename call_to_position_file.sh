@@ -24,5 +24,6 @@ while IFS= read -r line; do
     result=$(./call_to_position.sh $line)
     if [ -n "$result" ]; then
         echo "$result:$line" >> "$output_file"
+        echo "$result:$line"
     fi
 done < "$input_file"
