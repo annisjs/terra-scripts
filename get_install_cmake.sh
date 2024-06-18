@@ -16,11 +16,7 @@ fi
 
 # Define the target directory and file names
 target_dir="$HOME"
-file_name=$(basename "$download_url")
-output_file="$target_dir/$file_name"
-
-# Create the target directory
-mkdir -p "$target_dir"
+output_file="$target_dir/cmake.tar.gz"
 
 # Download the file
 echo "Downloading CMake from $download_url..."
