@@ -2,9 +2,9 @@
 if [ $# -ne 4 ]; then
     echo "Usage: $0 <snp_file> <output_folder> <type (mega or exome)> <pos (y/n)>"
     printf "\nsnp_file: a text file containing the SNPs of interest. If using positions instead of calls, set pos = y. Otherwise, set pos = n."
-    printf "\noutput_folder: output folder and the name of the raw/log files, eg. home/jupyter/output_folder/output_exome will output output_exome.raw and output_exome.log in output_folder."
-    printf "\ntype: mega or exome. Should plink be run on mega or exome data. Ensure get_mega or get_exome has been run first."
-    printf "\npos: is snp_file.txt a position file or call file (y/n)."
+    printf "\n\noutput_folder: output folder and the name of the raw/log files, eg. home/jupyter/output_folder/output_exome will output output_exome.raw and output_exome.log in output_folder."
+    printf "\n\ntype: mega or exome. Should plink be run on mega or exome data. Ensure get_mega or get_exome has been run first."
+    printf "\n\npos: is snp_file.txt a position file or call file (y/n)."
     exit 1
 fi
 SNP_FILE=$1
