@@ -1,12 +1,19 @@
 #!/bin/bash
 if [ $# -ne 3 ]; then
-    echo "Usage: $0 <snp_file> <output_folder> <type (mega or exome)>"
+    echo "Usage: $0 <snp_file> <output_folder> <type (mega or exome)> <pos (y/n)>"
+    echo "\nsnp_file: a text file containing the SNPs of interest. If using positions instead of calls, set pos = y. Otherwise, set pos = n."
+    echo "\noutput_folder: output folder and the name of the raw/log files, eg. home/jupyter/output_folder/output_exome will output output_exome.raw and output_exome.log in output_folder."
+    echo "\ntype: mega or exome. Should plink be run on mega or exome data. Ensure get_mega or get_exome has been run first."
+    echo "\npos: is snp_file.txt a position file or call file (y/n)."
     exit 1
 fi
 SNP_FILE=$1
 OUTPUT=$2
 TYPE=$3
-./call_to_position_file.sh $SNP_FILE /home/jupyter/snp_pos.txt &&
+POS=$4
+if [ "$POS" = "n"]; then
+    ./call_to_position_file.sh $SNP_FILE /home/jupyter/snp_pos.txt
+fi
 if [ "$TYPE" = "exome" ]; then
     BFILE=/home/jupyter/exomechip/exomechip_001/redeposit_plink_postqc/postQC_redeposit_exomechip_001_v1_202306
     ./call_from_bim.sh /home/jupyter/snp_pos.txt $BFILE.bim /home/jupyter/snp_call_$TYPE.txt &&
