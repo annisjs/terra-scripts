@@ -18,7 +18,7 @@ if [ "$TYPE" = "exome" ]; then
                 bed_name="${bed_file%.bed}"
                 echo "Using $bed_name as input to plink"
                 id=$(basename $i)
-                ./run_plink.sh $bed_name $OUTPUT_$id /home/jupyter/snp_out_$TYPE.txt
+                ./run_plink.sh $bed_name "$OUTPUT"_"$id" /home/jupyter/snp_out_$TYPE.txt
             fi
         fi
     done
