@@ -31,6 +31,7 @@ if [ "$TYPE" = "exome" ]; then
             fi
         fi
     done
+    Rscript format_exome_raw.R
 fi
 
 if [ "$TYPE" = "mega" ]; then
@@ -38,4 +39,5 @@ if [ "$TYPE" = "mega" ]; then
     ./call_from_bim.sh $POS_FILE $BFILE.bim /home/jupyter/snp_call_$TYPE.txt &&
     ./make_snp_file.sh /home/jupyter/snp_call_$TYPE.txt /home/jupyter/snp_out_$TYPE.txt &&
     ./run_plink.sh $BFILE $OUTPUT /home/jupyter/snp_out_$TYPE.txt
+    Rscript format_mega_raw.R
 fi
