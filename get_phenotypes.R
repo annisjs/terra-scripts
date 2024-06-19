@@ -19,8 +19,7 @@ if (pull_icd)
               FROM sd-vumc-tanagra-test.terra_sd_20230831.x_codes x
               INNER JOIN sd-vumc-tanagra-test.terra_sd_20230831.person p ON (x.person_id = p.person_id)
               INNER JOIN sd-vumc-tanagra-test.terra_sd_20230831.x_genotype_result g ON (x.person_id = g.person_id)
-              WHERE vocabulary_id LIKE 'ICD%' AND
-              platform_id = 30"
+              WHERE vocabulary_id LIKE 'ICD%'"
     bq_table <- bq_dataset_query("sd-vumc-tanagra-test.terra_sd_20230831", 
                                  query, 
                                  billing = Sys.getenv("GOOGLE_PROJECT"))
