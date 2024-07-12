@@ -11,8 +11,12 @@ TYPE=$2
 POS=$3
 POS_FILE=$SNP_FILE
 if [ "$POS" = "snp" ]; then
+    echo "Creating position file snp_pos.txt from $SNP_FILE"
     ./call_to_position_file.sh $SNP_FILE /home/jupyter/snp_pos.txt
     POS_FILE=/home/jupyter/snp_pos.txt
+fi
+if [ "$POS" = "pos" ]; then
+    echo "$SNP_FILE will be used as a position file"
 fi
 if [ "$TYPE" = "exome" ]; then
     OUTPUT=/home/jupyter/exome_output/exome_output
