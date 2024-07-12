@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ $# -ne 3 ]; then
-    echo "Usage: $0 <snp_file> <output_folder> <type (mega or exome)> <pos (y/n)>"
-    printf "\nsnp_file: a text file containing the SNPs of interest. If using positions instead of calls, set pos = y. Otherwise, set pos = n."
+    echo "Usage: $0 <snp_file> <output_folder> <type (mega or exome)> <file_type (pos/snp)>"
+    printf "\nsnp_file: a text file containing the SNPs of interest. If using positions instead of calls, set file_type = pos. Otherwise, set file_type = snp."
     printf "\n\ntype: mega or exome. Should plink be run on mega or exome data. Ensure get_mega or get_exome has been run first."
     printf "\n\npos: is snp_file.txt a position file or call file (y/n).\n"
     exit 1
@@ -10,7 +10,7 @@ SNP_FILE=$1
 TYPE=$2
 POS=$3
 POS_FILE=$SNP_FILE
-if [ "$POS" = "n" ]; then
+if [ "$POS" = "snp" ]; then
     ./call_to_position_file.sh $SNP_FILE /home/jupyter/snp_pos.txt
     POS_FILE=/home/jupyter/snp_pos.txt
 fi
