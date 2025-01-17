@@ -9,7 +9,9 @@
 1. get_install_plink.sh
 2. get_mega.sh
 3. get_exome.sh
-4. An example would be: ./run_plink_pipeline.sh /home/jupyter/terra-scripts/snp.txt /home/jupyter/exome_output/exome_output exome n
+4. mkdir /home/jupyter/exome_output
+5. mkdir /home/jupyter/mega_output
+4. An example would be: ./run_plink_pipeline.sh ~/terra-scripts/snp.txt exome n
 This runs the SNPs in snp.txt using Exome data. Output would be stored in exome_output folder in home folder. 
 The "exome" argument tells the script to use exome data and the "n" argument states that the SNP file is a call file (e.g. usually starting "rs").
 
