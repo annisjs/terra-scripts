@@ -21,20 +21,36 @@ fi
 if [ "$TYPE" = "exome" ]; then
     OUTPUT=/home/jupyter/exome_output/exome_output
     BFILE=/home/jupyter/exomechip/exomechip_001/redeposit_plink_postqc/postQC_redeposit_exomechip_001_v1_202306
-    ./call_from_bim.sh $POS_FILE $BFILE.bim /home/jupyter/snp_call_$TYPE.txt &&
-    ./make_snp_file.sh /home/jupyter/snp_call_$TYPE.txt /home/jupyter/snp_out_$TYPE.txt &&
-    for i in /home/jupyter/exomechip/exomechip_*; do
-        if [ -d "$i" ]; then
-            bed_file=$(find "$i/redeposit_plink_postqc" -name "*.bed")
-            if [ -f "$bed_file" ]; then
-                bed_name="${bed_file%.bed}"
-                echo "Using $bed_name as input to plink"
-                id=$(basename $i)
-                ./run_plink.sh $bed_name "$OUTPUT"_"$id" /home/jupyter/snp_out_$TYPE.txt
+    if [ "$POS" = "range" ]; then
+        for i in /home/jupyter/exomechip/exomechip_*; do
+            if [ -d "$i" ]; then
+                bed_file=$(find "$i/redeposit_plink_postqc" -name "*.bed")
+                if [ -f "$bed_file" ]; then
+                    bed_name="${bed_file%.bed}"
+                    echo "Using $bed_name as input to plink"
+                    id=$(basename $i)
+                    ./run_plink_range.sh $bed_name "$OUTPUT"_"$id" /home/jupyter/snp_out_$TYPE.txt
+                fi
             fi
-        fi
-    done
-    Rscript format_exome_raw.R
+        done
+    fi
+    if [ "$POS" = "pos" ]; then
+        ./call_from_bim.sh $POS_FILE $BFILE.bim /home/jupyter/snp_call_$TYPE.txt &&
+        ./make_snp_file.sh /home/jupyter/snp_call_$TYPE.txt /home/jupyter/snp_out_$TYPE.txt &&
+        for i in /home/jupyter/exomechip/exomechip_*; do
+            if [ -d "$i" ]; then
+                bed_file=$(find "$i/redeposit_plink_postqc" -name "*.bed")
+                if [ -f "$bed_file" ]; then
+                    bed_name="${bed_file%.bed}"
+                    echo "Using $bed_name as input to plink"
+                    id=$(basename $i)
+                    ./run_plink.sh $bed_name "$OUTPUT"_"$id" /home/jupyter/snp_out_$TYPE.txt
+                fi
+            fi
+        done
+        Rscript format_exome_raw.R
+    fi
+
 fi
 
 if [ "$TYPE" = "mega" ]; then
