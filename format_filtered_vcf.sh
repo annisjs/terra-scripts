@@ -3,7 +3,7 @@
 # Loop through all matching files
 for file in chr*_output.vcf.gz; do
   # Extract the digit(s) following "chr"
-  x=$(echo "$file" | grep -oP '(?<=chr)\d+')
+  x=$(echo "$file" | grep -oP '(?<=chr)\d+|X')
 
   # Run the bcftools query command and save the output
   bcftools query -f '%CHROM:%POS:[\t%GT]\n' "$file" > genotypes.txt
