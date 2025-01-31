@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Loop through all matching files
-for file in chr*_output.vcf.gz; do
+for file in chr*.vcf.gz; do
   # Extract the digit(s) following "chr"
   x=$(echo "$file" | grep -oP '(?<=chr)\d+|X')
 
